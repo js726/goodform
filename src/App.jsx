@@ -5,7 +5,7 @@ import Project from './Project'; import Admin from './Admin'
 import { demo } from './data'
 
 const KEY = 'goodform-brief-2'
-const route = () => location.hash.replace('#/', '').split('?')[0] || 'home'
+const route = () => location.hash.replace('#/', '').split(/[?#]/)[0] || 'home'
 const load = () => { try { return JSON.parse(localStorage.getItem(KEY)) || demo } catch { return demo } }
 
 export default function App() {
