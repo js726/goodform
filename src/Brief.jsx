@@ -166,7 +166,7 @@ export default function Brief({ form: f, set }) {
                   <Field label="What do you like about this?"><textarea className="input" value={r.like} onChange={e => up({ refs: f.refs.map((x, j) => j === i ? { ...x, like: e.target.value } : x) })} /></Field>
                 </div>
               ))}
-              <div className="between" style={{ gap: 12 }}>
+              <div className="between addref" style={{ gap: 12 }}>
                 <input className="input" style={{ flex: 1, minHeight: 48, height: 48 }} placeholder="https://a-website-you-love.com" value={ref} onChange={e => setRef(e.target.value)} onKeyDown={e => e.key === 'Enter' && addRef()} />
                 <Btn lg onClick={addRef}>Add reference <Plus size={17} /></Btn>
               </div>
@@ -208,9 +208,9 @@ export default function Brief({ form: f, set }) {
             </div>
           </>}
 
-          <div className="between">
+          <div className="between navrow">
             {step === 1 ? <Btn lg href="#/">Back to Goodform <ArrowLeft size={17} /></Btn> : <Btn lg onClick={() => { setStep(step - 1); scrollTo(0, 0) }}>Back <ArrowLeft size={17} /></Btn>}
-            <div className="col" style={{ gap: 10, alignItems: 'flex-end' }}>
+            <div className="col navr" style={{ gap: 10, alignItems: 'flex-end' }}>
               <Btn p lg disabled={sending || (step === 4 && !agree)} onClick={() => { if (step < 4) { setStep(step + 1); scrollTo(0, 0) } else send() }}>{sending ? 'Sending…' : NEXT[step - 1]} {step === 4 ? <Send size={17} /> : <ArrowRight size={17} />}</Btn>
               {sendErr && <small style={{ fontSize: 12, color: '#b3261e' }}>{sendErr}</small>}
               <small style={{ fontSize: 12 }}>Draft saved just now · No account needed</small>

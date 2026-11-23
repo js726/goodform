@@ -34,8 +34,8 @@ function Login({ user }) {
     if (error) setErr('Microsoft sign-in isn’t switched on yet. Check the Azure settings in Supabase.')
   }
   return (
-    <div style={{ minHeight: '100vh', display: 'grid', placeItems: 'center', background: 'var(--forest)', padding: 16 }}>
-      <form onSubmit={go} className="card" style={{ width: 400, maxWidth: '100%' }}>
+    <div style={{ minHeight: '100vh', display: 'grid', gridTemplateColumns: 'minmax(0, 1fr)', placeItems: 'center', background: 'var(--forest)', padding: 16 }}>
+      <form onSubmit={go} className="card" style={{ width: '100%', maxWidth: 400 }}>
         <span className="mark"><Asterisk size={20} /></span>
         <div className="col g8"><h1 className="sg" style={{ fontSize: 30 }}>Studio sign in</h1><p className="muted" style={{ fontSize: 14 }}>Private workspace for Goodform briefs.</p></div>
         {user ? (

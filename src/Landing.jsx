@@ -28,7 +28,7 @@ export default function Landing() {
     <div style={{ background: '#fff' }}>
       <header className="nav">
         <Logo />
-        <nav className="between" style={{ gap: 30, fontSize: 14 }}><a href="#work">Selected work</a><a href="#services">Services</a><a href="#how">How it works</a><BriefBtn>Start your brief</BriefBtn></nav>
+        <nav className="between navlinks" style={{ gap: 30, fontSize: 14 }}><a href="#work">Selected work</a><a href="#services">Services</a><a href="#how">How it works</a><BriefBtn>Start your brief</BriefBtn></nav>
       </header>
 
       <section className="hero">
@@ -45,22 +45,22 @@ export default function Landing() {
           <div className="prev">
             <div className="between pad" style={{ height: 44, fontFamily: 'Lora' }}><span style={{ fontSize: 20 }}>fieldwork</span><span style={{ fontSize: 8, font: '8px Inter' }}>OUR PLACES · THE SLOW LIFE · BOOK A STAY ↗</span></div>
             <Photo src="countryside" h={247} />
-            <div className="between pad" style={{ padding: 22, gap: 20 }}>
+            <div className="between pad stk" style={{ padding: 22, gap: 20 }}>
               <p style={{ font: '29px/1.05 Lora' }}>Somewhere to<br />slow down.</p>
-              <div className="col" style={{ width: 155, gap: 10, fontSize: 9 }}><span className="muted">Thoughtful places for unhurried days. A collection of stays, close to nature.</span><span>FIND YOUR PLACE ↗</span></div>
+              <div className="col sm-w" style={{ gap: 10, fontSize: 9 }}><span className="muted">Thoughtful places for unhurried days. A collection of stays, close to nature.</span><span>FIND YOUR PLACE ↗</span></div>
             </div>
           </div>
           <div className="between" style={{ fontSize: 12 }}><span>Fieldwork Stays · Brand-led website</span><b style={{ color: '#244df0' }}>+38% direct enquiries ↗</b></div>
         </div>
       </section>
 
-      <div className="between wrap" style={{ padding: '30px 80px', borderBlock: '1px solid var(--line)', fontSize: 13 }}>
+      <div className="between wrap trust" style={{ borderBlock: '1px solid var(--line)', fontSize: 13 }}>
         <small style={{ fontSize: 13 }}>For independent businesses with something to say.</small>
         {['One designer, start to finish', 'Strategy before pixels', 'Made to grow with you'].map(t => <span key={t} className="between" style={{ gap: 8 }}><Check size={16} color="#25634b" />{t}</span>)}
       </div>
 
       <section id="work" className="sect col g28" style={{ gap: 36 }}>
-        <div className="between" style={{ alignItems: 'flex-end' }}>
+        <div className="between head1">
           <div className="col g14" style={{ maxWidth: 720 }}><p className="eyebrow">A few good collaborations</p><h2 className="h2">Different businesses. The same thoughtful approach.</h2></div>
           <a href="#work" style={{ color: '#244df0', fontSize: 14 }}>Explore selected work ↗</a>
         </div>
@@ -81,11 +81,11 @@ export default function Landing() {
         </div>
       </section>
 
-      <section id="services" className="col" style={{ gap: 72, padding: '0 80px 88px' }}>
+      <section id="services" className="col sect-b" style={{ gap: 72 }}>
         <div className="col" style={{ gap: 36 }}>
-          <div className="between" style={{ gap: 80, alignItems: 'flex-end' }}>
+          <div className="between head2">
             <div className="col g14" style={{ flex: 1 }}><p className="eyebrow">What I can help with</p><h2 className="h2">The right website. Not just another website.</h2></div>
-            <p className="lead" style={{ width: 390 }}>From the first conversation to the final little detail, you’ll work directly with me. No handoffs. No agency layers.</p>
+            <p className="lead w390">From the first conversation to the final little detail, you’ll work directly with me. No handoffs. No agency layers.</p>
           </div>
           <div className="cols">
             {services.map(([I, t, d, tags, price]) => (
@@ -103,7 +103,7 @@ export default function Landing() {
             <p>That’s a great place to start. The guided brief helps you share what matters, even if you’re not sure what to call it yet.</p>
             <span className="between" style={{ justifyContent: 'flex-start', gap: 8, fontSize: 12 }}><LockKeyhole size={16} />Your uploads and ideas stay private.</span>
           </div>
-          <div className="col g12" style={{ width: 480, maxWidth: '100%' }}>
+          <div className="col g12 w480">
             {ingredients.map(([I, t, d]) => <div key={t} className="ing"><I size={25} /><div className="col" style={{ gap: 6 }}><b style={{ fontSize: 15 }}>{t}</b><span style={{ fontSize: 13, color: '#e2e8ff' }}>{d}</span></div></div>)}
           </div>
         </div>
@@ -127,7 +127,7 @@ export default function Landing() {
             <p className="sg" style={{ fontSize: 29, fontWeight: 400, lineHeight: 1.3, letterSpacing: '-.02em' }}>“Alex took our jumble of ideas and turned it into a site that finally feels like us. The whole process felt calm, clear and genuinely collaborative.”</p>
             <div className="between" style={{ justifyContent: 'flex-start', gap: 13 }}><Photo src="portrait" w={44} h={44} r={999} /><div className="col" style={{ gap: 5 }}><b style={{ fontSize: 14 }}>Sarah Ellis</b><small style={{ fontSize: 12 }}>Founder, Fieldwork Stays</small></div></div>
           </div>
-          <div className="col" style={{ flex: '0 0 390px', background: '#edf1eb', borderRadius: 16, padding: 32, gap: 24 }}>
+          <div className="col q2" style={{ background: '#edf1eb', borderRadius: 16, padding: 32, gap: 24 }}>
             <Quote size={30} color="#25634b" />
             <p className="sg" style={{ fontSize: 25, fontWeight: 400, lineHeight: 1.35 }}>“Not just a beautiful website. A much better way for our customers to find us and order.”</p>
             <div className="col" style={{ gap: 6 }}><b style={{ fontSize: 14 }}>Jamie Chen</b><small style={{ fontSize: 12 }}>Owner, Common Ground</small></div>
@@ -136,8 +136,8 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="sect" style={{ display: 'flex', gap: 100 }}>
-        <div className="col" style={{ width: 380, gap: 22, flex: 'none' }}>
+      <section className="sect faqsec">
+        <div className="col faqside" style={{ gap: 22 }}>
           <p className="eyebrow">A few things you might be wondering</p><h2 className="h2" style={{ fontSize: 48 }}>Good questions. Straight answers.</h2>
           <p className="lead">Something else on your mind? I’m always happy to talk it through.</p>
           <a href="mailto:hello@goodform.studio" style={{ color: '#244df0', fontWeight: 500 }}>hello@goodform.studio ↗</a>
@@ -153,20 +153,20 @@ export default function Landing() {
       </section>
 
       <div className="wrap" style={{ paddingBottom: 72 }}>
-        <div className="between" style={{ background: '#edf1ff', borderRadius: 24, padding: 56, gap: 72 }}>
+        <div className="between ctabox" style={{ background: '#edf1ff', borderRadius: 24 }}>
           <div className="col" style={{ gap: 18 }}><p className="eyebrow">Your next chapter starts here</p><h2 className="h2" style={{ fontSize: 55 }}>Let’s make a website you’re proud to share.</h2><p className="lead">No pitch deck required. Just tell me a little about your business.</p></div>
           <div className="col" style={{ alignItems: 'center', gap: 16 }}><BriefBtn lg>Tell me about your website</BriefBtn><small style={{ fontSize: 12 }}>No account. No pressure. A real conversation.</small></div>
         </div>
       </div>
 
-      <footer className="dark col" style={{ padding: '56px 80px 32px', gap: 48 }}>
-        <div className="between" style={{ alignItems: 'flex-start' }}>
-          <div className="col" style={{ width: 450, gap: 20 }}>
+      <footer className="dark col fdark" style={{ gap: 48 }}>
+        <div className="between fcols">
+          <div className="col fw1" style={{ gap: 20 }}>
             <Logo light /><p className="muted" style={{ fontSize: 14, lineHeight: 1.55 }}>Thoughtful websites for independent businesses.<br />Designed and built by Alex Morgan in Bristol.</p>
             <a className="sg" href="mailto:hello@goodform.studio" style={{ fontSize: 26, fontWeight: 400 }}>hello@goodform.studio ↗</a>
           </div>
           <div className="col" style={{ gap: 15, fontSize: 14 }}><small style={{ fontSize: 12 }}>EXPLORE</small><a href="#work">Selected work</a><a href="#services">Services</a><a href="#how">How it works</a><a href="#/brief">Start your brief</a></div>
-          <div className="col" style={{ gap: 15, width: 240, fontSize: 14 }}><small style={{ fontSize: 12 }}>ALREADY STARTED?</small><span style={{ lineHeight: 1.55 }}>Return to your saved brief or project with a secure email link.</span><a href="#/project">Send me a sign-in link ↗</a></div>
+          <div className="col fw2" style={{ gap: 15, fontSize: 14 }}><small style={{ fontSize: 12 }}>ALREADY STARTED?</small><span style={{ lineHeight: 1.55 }}>Return to your saved brief or project with a secure email link.</span><a href="#/project">Send me a sign-in link ↗</a></div>
         </div>
         <div className="between" style={{ borderTop: '1px solid rgba(255,255,255,.15)', paddingTop: 24, fontSize: 12 }}><small>© 2026 Goodform Studio. Small by design.</small><small>Privacy policy &nbsp;&nbsp; Terms &nbsp;&nbsp; Instagram ↗</small></div>
       </footer>

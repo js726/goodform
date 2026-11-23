@@ -45,4 +45,75 @@ textarea.input{min-height:102px;resize:vertical}.input:focus{outline:2px solid v
 .faq{border-bottom:1px solid var(--line);padding:24px 0;text-align:left;width:100%}.dark{background:var(--forest);color:#fff}.dark small,.dark .muted{color:#a9b5b0}
 .proj{display:flex;gap:28px;align-items:flex-start}.proj>.col:first-child{flex:1;min-width:0}.side-col{width:336px;flex:none}
 .dev{position:fixed;right:12px;bottom:12px;z-index:9;background:var(--forest);color:#fff;border-radius:10px;padding:8px;display:flex;gap:6px;font-size:11px}.dev a{padding:4px 8px;border-radius:6px}.dev a.on{background:var(--blue)}
-@media(max-width:960px){.wrap,.sect,.nav,.hero,.brief,.foot{padding-inline:20px}.hero,.brief,.cols,.blue-box,.row,.proj,.studio,.studio-body,.metrics{flex-direction:column}.showcase,.guide,.side-col,.list{width:100%}.h1{font-size:48px}.h2{font-size:34px}.h3{font-size:34px}.side{display:none}.grid2{grid-template-columns:1fr}}
+/* Layout values that used to be written inline (so mobile rules can override them) */
+.sm-w{width:155px}.trust{padding:30px 80px}.head1{align-items:flex-end}.sect-b{padding:0 80px 88px}.head2{gap:80px;align-items:flex-end}
+.w390{width:390px}.w480{width:480px;max-width:100%}.q2{flex:0 0 390px}.faqsec{display:flex;gap:100px}.faqside{width:380px;flex:none}
+.ctabox{padding:56px;gap:72px}.fdark{padding:56px 80px 32px}.fcols{align-items:flex-start}.fw1{width:450px}.fw2{width:240px}
+.pmain{padding:48px 80px 64px}.okbar{padding:32px}.phead{align-items:flex-end}
+img,svg{max-width:100%}
+
+/* ---------- Tablet and below ---------- */
+@media(max-width:960px){
+  .wrap,.sect,.nav,.hero,.brief,.foot{padding-inline:20px}
+  .sect{padding-block:56px}.sect-b{padding:0 20px 56px}.trust{padding:24px 20px}.fdark{padding:40px 20px 24px}.pmain{padding:32px 20px 48px}
+  .hero{padding-block:36px;gap:36px}.brief{padding-block:28px 40px;gap:28px}
+  .hero,.brief,.cols,.blue-box,.row,.proj,.studio,.studio-body{flex-direction:column}
+  .showcase{width:100%;height:auto;padding:20px}.guide,.side-col,.list{width:100%!important}
+  .h1{font-size:46px}.h2,.h3{font-size:34px}
+  .grid2{grid-template-columns:1fr}
+  .head1,.head2,.fcols,.phead,.okbar{flex-direction:column;align-items:flex-start;gap:16px}
+  .w390,.w480,.faqside,.fw1,.fw2{width:100%}.q2{flex:none}
+  .faqsec{flex-direction:column;gap:32px}
+  .blue-box{padding:28px;gap:28px}.ctabox{flex-direction:column;align-items:flex-start;padding:32px 24px;gap:24px}
+  .okbar{padding:24px}
+}
+
+/* ---------- Phones ---------- */
+@media(max-width:560px){
+  body{font-size:15px}
+  /* headings: inline sizes in the components are overridden here */
+  .h1{font-size:42px!important}
+  .h2,.h3,h1.sg,h2.sg{font-size:30px!important;line-height:1.15}
+  .blue-box h2.sg{font-size:28px!important}
+  .between{flex-wrap:wrap}
+  .faq .between,.cols article .between,.prev .between{flex-wrap:nowrap}
+  .fdark .col{gap:12px!important}
+  /* top bar */
+  .nav{height:auto;min-height:64px;padding-block:12px;gap:12px}
+  .navlinks a:not(.btn){display:none}
+  .logo small{display:none}.logo b{font-size:24px}
+  .nav>.between>small{display:none}
+  /* buttons and fields: big enough to tap, 16px so iPhones don't zoom in on focus */
+  .btn{height:44px}.btn.lg{height:50px}
+  .input{font-size:16px;min-height:48px}
+  .chip{padding:12px 14px}
+  .card{padding:20px}.card .sec-t{font-size:21px}
+  .sec{padding:20px}
+  /* landing */
+  .stk{flex-direction:column;align-items:flex-start}.sm-w{width:100%}
+  .trust{flex-direction:column;align-items:flex-start;gap:12px}
+  .cols{gap:16px}.svc{padding:22px}
+  .ing{padding:16px}.blue-box{padding:24px 20px;border-radius:18px}
+  .foot{flex-direction:column;gap:6px;padding-block:20px}
+  .fdark>.between:last-child{flex-direction:column;align-items:flex-start;gap:8px}
+  /* brief: keep just the progress bar; Back / Next move people along */
+  .guide{gap:16px}.guide h2,.guide p,.guide>:not(:first-child){display:none}
+  .navrow{flex-direction:column-reverse;align-items:stretch;gap:14px}
+  .navrow .btn{width:100%}.navr{align-items:stretch!important;text-align:center}
+  .addref{flex-direction:column;align-items:stretch}.addref .btn{width:100%}
+  .drop{padding:24px 16px}
+  .file{padding:12px;gap:10px}
+  /* project page */
+  .okbar{flex-direction:column}
+  .side-col{width:100%}
+  /* studio / admin: sidebar becomes a slim top bar so Sign out stays reachable */
+  .side{display:flex;width:100%;flex-direction:row;align-items:center;flex-wrap:wrap;padding:12px 16px;gap:12px}
+  .side>span,.side>.nav-i{display:none}
+  .side>.col{margin:0 0 0 auto!important;flex-direction:row;align-items:center;gap:12px;padding:0}
+  .side>.col>span{display:none}.side>.col>.nav-i{display:flex;width:auto;padding:8px 10px}
+  .studio>.g28{padding:20px!important;gap:20px}
+  .metrics{display:grid!important;grid-template-columns:1fr 1fr;gap:10px!important}
+  .metric{padding:14px;gap:10px}.metric>span{font-size:28px!important}
+  .list{width:100%!important}
+}
+@media print{.side,.list,.noprint,.dev{display:none!important}}

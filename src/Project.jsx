@@ -40,7 +40,7 @@ export default function Project({ form: f }) {
     return (
       <div>
         <header className="nav"><Logo /><small style={{ fontSize: 14 }}>Questions? Email Alex</small></header>
-        <main className="col wrap" style={{ gap: 32, padding: '48px 80px 64px' }}>
+        <main className="col wrap pmain" style={{ gap: 32 }}>
           <div className="col" style={{ background: 'var(--tint)', borderRadius: 16, padding: 32, gap: 12 }}>
             <p className="eyebrow">Project {code}</p>
             <h1 className="sg" style={{ fontSize: 40 }}>{prog ? `Hi ${prog.first_name}. Here’s where ${prog.business} stands.` : missing ? 'We couldn’t find that project.' : 'Loading your project…'}</h1>
@@ -59,8 +59,8 @@ export default function Project({ form: f }) {
   return (
     <div>
       <header className="nav"><Logo /><div className="between" style={{ gap: 24 }}><small style={{ fontSize: 14 }}>Questions? Email Alex</small><Btn>{first}’s project <ChevronDown size={17} /></Btn></div></header>
-      <main className="col wrap" style={{ gap: 32, padding: '48px 80px 64px' }}>
-        <div className="between" style={{ gap: 24, background: 'var(--tint)', borderRadius: 16, padding: 32 }}>
+      <main className="col wrap pmain" style={{ gap: 32 }}>
+        <div className="between okbar" style={{ gap: 24, background: 'var(--tint)', borderRadius: 16 }}>
           <span style={{ width: 60, height: 60, borderRadius: '50%', background: '#244df0', color: '#fff', display: 'grid', placeItems: 'center', flex: 'none' }}><Check size={30} /></span>
           <div className="col g12" style={{ flex: 1, gap: 10 }}>
             <p className="eyebrow">Brief successfully sent · {f.code || 'GF-2048'}</p>
@@ -69,7 +69,7 @@ export default function Project({ form: f }) {
           </div>
           <Pill t="b">{prog ? CLIENT_LABEL[prog.status] || prog.status : 'In review'}</Pill>
         </div>
-        <div className="between" style={{ alignItems: 'flex-end' }}>
+        <div className="between phead">
           <div className="col g8"><h2 className="sg" style={{ fontSize: 34 }}>{f.business}</h2><small style={{ fontSize: 13 }}>Website {f.type.startsWith('Redesign') ? 'redesign' : 'project'} · Submitted 6 November 2026 at 10:42</small></div>
           <Btn href="#/brief">View submitted brief <FileText size={17} /></Btn>
         </div>
