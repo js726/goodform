@@ -27,10 +27,11 @@ export function stagesFor(status, created, due) {
   })
 }
 
-// Read-only for clients. Pass onPick to make the steps clickable (admin).
-export function Timeline({ stages, onPick }) {
+// Always read-only: the admin changes status with an explicit, confirmed control instead.
+// `bare` drops the card frame for use inside another card.
+export function Timeline({ stages, onPick, bare }) {
   return (
-    <div className="card" style={{ padding: 28, flexDirection: 'row', gap: 24, flexWrap: 'wrap' }}>
+    <div className={bare ? 'tl' : 'card'} style={{ padding: bare ? 0 : 28, flexDirection: 'row', display: 'flex', gap: 24, flexWrap: 'wrap' }}>
       {stages.map((s, i) => {
         const Tag = onPick ? 'button' : 'div'
         const props = onPick ? { type: 'button', onClick: () => onPick(i), title: `Move project to: ${s.title}` } : {}
