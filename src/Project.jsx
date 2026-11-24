@@ -3,7 +3,7 @@ import { Check, ChevronDown, FileText, Pencil, Plus, Send, ExternalLink, MailChe
 import { Logo, Btn, Pill, Summary, FileCard } from './ui'
 import { NS } from './data'
 import { supabase } from './supabase'
-import { Timeline, stagesFor, CLIENT_LABEL } from './Timeline'
+import { Timeline, stagesFor, clientLabel } from './Timeline'
 
 const DEMO = stagesFor('in_review', '2026-11-06T10:42:00Z', '2026-11-10')
 const Panel = ({ t, aside, children }) => (
@@ -23,6 +23,7 @@ export default function Project({ form: f }) {
   const linked = urlCode && urlCode !== f.code
   const [prog, setProg] = useState(null)
   const [missing, setMissing] = useState(false)
+  const [helpOpen, setHelpOpen] = useState(false)
   useEffect(() => {
     if (!code || !supabase) return
     let live = true
@@ -30,11 +31,13 @@ export default function Project({ form: f }) {
       if (!live) return
       if (data?.[0]) { setProg(data[0]); setMissing(false) } else setMissing(true)
     })
-    get()
-    const t = setInterval(get, 30000)
+    // Optional: older databases without this function simply keep the default wording.
+    const help = () => supabase.rpc('project_help_open', { p_code: code }).then(({ data, error }) => { if (live && !error) setHelpOpen(!!data) })
+    get(); help()
+    const t = setInterval(() => { get(); help() }, 30000)
     return () => { live = false; clearInterval(t) }
   }, [code])
-  const stages = prog ? stagesFor(prog.status, prog.created_at, prog.proposal_due) : DEMO
+  const stages = prog ? stagesFor(prog.status, prog.created_at, prog.proposal_due, { helpOpen }) : DEMO
   const list = a => a.filter(x => x !== NS).join(' · ')
   if (linked) {
     return (
@@ -67,7 +70,7 @@ export default function Project({ form: f }) {
             <h1 className="sg" style={{ fontSize: 40 }}>Thanks, {first}. It’s in good hands.</h1>
             <p className="lead">I’ve received your brief for {f.business}. This is your private project space—everything we need, in one place.</p>
           </div>
-          <Pill t="b">{prog ? CLIENT_LABEL[prog.status] || prog.status : 'In review'}</Pill>
+          <Pill t="b">{prog ? clientLabel(prog.status, helpOpen) : 'In review'}</Pill>
         </div>
         <div className="between phead">
           <div className="col g8"><h2 className="sg" style={{ fontSize: 34 }}>{f.business}</h2><small style={{ fontSize: 13 }}>Website {f.type.startsWith('Redesign') ? 'redesign' : 'project'} · Submitted 6 November 2026 at 10:42</small></div>

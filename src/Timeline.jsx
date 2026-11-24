@@ -7,11 +7,15 @@ export const CLIENT_LABEL = {
   new: 'Received', in_review: 'In review', awaiting_reply: 'Awaiting your reply', proposal_sent: 'Proposal sent',
   in_progress: 'In progress', delivered: 'Delivered', archived: 'On hold',
 }
+// The status label the client sees. While they're waiting on the studio's help, "Awaiting your reply" would be wrong.
+export const clientLabel = (status, helpOpen = false) => (status === 'awaiting_reply' && helpOpen ? 'In review' : CLIENT_LABEL[status] || status)
 const DONE = { new: 1, in_review: 1, awaiting_reply: 1, proposal_sent: 2, in_progress: 3, delivered: 4, archived: 1 }
 const NO_ACTIVE = ['new', 'archived', 'delivered']
 
 // Turns a brief's status into the four steps the client sees.
-export function stagesFor(status, created, due) {
+// helpOpen: the client asked the studio to help them decide something, so an
+// "awaiting reply" brief is still the studio's move and must not tell them it's theirs.
+export function stagesFor(status, created, due, { helpOpen = false } = {}) {
   const done = DONE[status] ?? 1
   const active = NO_ACTIVE.includes(status) ? -1 : done
   const received = new Date(created).toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }).replace(', ', ' · ')
@@ -20,17 +24,18 @@ export function stagesFor(status, created, due) {
     const state = i < done ? 'done' : i === active ? 'active' : 'todo'
     let text
     if (i === 0) text = received
-    else if (i === 1) text = state === 'done' ? 'Complete' : state === 'active' ? (status === 'awaiting_reply' ? 'Waiting for your reply' : 'In progress') : status === 'archived' ? 'On hold' : 'Up next'
+    else if (i === 1) text = state === 'done' ? 'Complete' : state === 'active' ? (status === 'awaiting_reply' ? (helpOpen ? 'Preparing options for you' : 'Waiting for your reply') : 'In progress') : status === 'archived' ? 'On hold' : 'Up next'
     else if (i === 2) text = state === 'done' ? 'Sent' : state === 'active' ? 'Sent · awaiting your decision' : by
     else text = state === 'done' ? 'Complete' : state === 'active' ? 'In progress' : 'Once you’re happy'
     return { title, state, text }
   })
 }
 
-// Read-only for clients. Pass onPick to make the steps clickable (admin).
-export function Timeline({ stages, onPick }) {
+// Always read-only: the admin changes status with an explicit, confirmed control instead.
+// `bare` drops the card frame for use inside another card.
+export function Timeline({ stages, onPick, bare }) {
   return (
-    <div className="card" style={{ padding: 28, flexDirection: 'row', gap: 24, flexWrap: 'wrap' }}>
+    <div className={bare ? 'tl' : 'card'} style={{ padding: bare ? 0 : 28, flexDirection: 'row', display: 'flex', gap: 24, flexWrap: 'wrap' }}>
       {stages.map((s, i) => {
         const Tag = onPick ? 'button' : 'div'
         const props = onPick ? { type: 'button', onClick: () => onPick(i), title: `Move project to: ${s.title}` } : {}
