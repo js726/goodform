@@ -30,7 +30,7 @@ function Login({ user }) {
   const microsoft = async () => {
     setErr('')
     sessionStorage.setItem('gf-after-login', '1')
-    const { error } = await supabase.auth.signInWithOAuth({ provider: 'azure', options: { scopes: 'email', redirectTo: `${location.origin}${import.meta.env.BASE_URL}#/admin` } })
+    const { error } = await supabase.auth.signInWithOAuth({ provider: 'azure', options: { scopes: 'email', redirectTo: `${location.origin}${import.meta.env.BASE_URL}` } })
     if (error) setErr('Microsoft sign-in isn’t switched on yet. Check the Azure settings in Supabase.')
   }
   return (
